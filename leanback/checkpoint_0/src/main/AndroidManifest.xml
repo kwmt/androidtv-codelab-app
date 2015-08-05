@@ -71,7 +71,12 @@
         </activity>
         <activity
             android:name=".fastlane.LeanbackActivity"
-            android:label="@string/title_activity_leanback" >
+            android:label="@string/title_activity_leanback"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
