@@ -29,5 +29,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="columns">1</string>
     <string name="title_activity_leanback">LeanbackActivity</string>
+    <string name="title_activity_video_details">VideoDetailsActivity</string>
 
 </resources>
