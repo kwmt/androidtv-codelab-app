@@ -28,6 +28,7 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -88,6 +89,17 @@
             android:theme="@style/AppTheme"
             android:exported="true">
         </activity>
+
+        <receiver android:name="com.android.example.leanback.fastlane.BootCompleteReceiver" android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".fastlane.RecommendationsService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
