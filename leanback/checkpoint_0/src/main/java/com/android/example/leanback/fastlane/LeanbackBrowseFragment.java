@@ -10,6 +10,7 @@ import android.support.v17.leanback.widget.ListRow;
 import android.support.v17.leanback.widget.ListRowPresenter;
 import android.support.v17.leanback.widget.ObjectAdapter;
 import android.support.v17.leanback.widget.OnItemViewClickedListener;
+import android.support.v17.leanback.widget.OnItemViewSelectedListener;
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.Row;
 import android.support.v17.leanback.widget.RowPresenter;
@@ -32,8 +33,10 @@ public class LeanbackBrowseFragment extends BrowseFragment {
     };
 
     private ArrayObjectAdapter mRowsAdapter;
+    private BackgroundHelper bgHelper;
 
     public void init() {
+
         mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         setAdapter(mRowsAdapter);
 
@@ -54,7 +57,12 @@ public class LeanbackBrowseFragment extends BrowseFragment {
             mRowsAdapter.add(new ListRow(headerItem, manager.getItemList()));
         }
 
+        bgHelper = new BackgroundHelper(getActivity());
+        bgHelper.prepareBackgroundManager();
+
+
         setOnItemViewClickedListener(getDefaultItemViewClickedListener());
+        setOnItemViewSelectedListener(getDefaultItemSelectedListener());
 
     }
 
@@ -66,6 +74,18 @@ public class LeanbackBrowseFragment extends BrowseFragment {
                 intent.putExtra(Video.INTENT_EXTRA_VIDEO, (Serializable)item);
                 startActivity(intent);
 
+            }
+        };
+    }
+
+    protected OnItemViewSelectedListener getDefaultItemSelectedListener(){
+        return new OnItemViewSelectedListener() {
+            @Override
+            public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
+                if(item instanceof Video){
+                    bgHelper.setBackgroundUrl(((Video) item).getThumbUrl());
+                    bgHelper.startBackgroundTimer();
+                }
             }
         };
     }

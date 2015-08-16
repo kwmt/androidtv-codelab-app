@@ -41,10 +41,13 @@ public class VideoDetailsFragment extends DetailsFragment {
     private static final int ACTION_PLAY = 1;
     private static final int ACTION_WATCH_LATER = 2;
 
+    BackgroundHelper bgHelper;
+
     public VideoDetailsFragment() {
         // Required empty public constructor
 
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,8 +57,11 @@ public class VideoDetailsFragment extends DetailsFragment {
                 .getSerializableExtra(Video.INTENT_EXTRA_VIDEO);
 
         new DetailRowBuilderTask().execute(selectedVideo);
-    }
 
+        bgHelper = new BackgroundHelper(getActivity());
+         bgHelper.prepareBackgroundManager();
+        bgHelper.updateBackground(selectedVideo.getThumbUrl());
+    }
 
 
     private class DetailRowBuilderTask extends AsyncTask<Video, Integer, DetailsOverviewRow> {
