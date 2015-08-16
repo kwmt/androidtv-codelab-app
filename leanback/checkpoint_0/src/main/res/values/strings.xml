@@ -31,4 +31,10 @@
     <string name="title_activity_leanback">LeanbackActivity</string>
     <string name="title_activity_video_details">VideoDetailsActivity</string>
 
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="action_play">Play</string>
+    <string name="action_watch_later">Watch Later</string>
+
 </resources>
